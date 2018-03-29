@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="tutorial" width="300" height="300">您的浏览器不支持canvas，请换高级浏览器浏览</canvas>
+  <script type="text/javascript">
+    var canvas = document.getElementById('tutorial');
+    var ctx = canvas.getContext('2d');
+  function draw(s,zhouqi){
+
+      ctx.beginPath();
+      var endA = (Math.PI/180)*360;
+      ctx.lineWidth = 8; //设置线宽
+      ctx.arc(150,150,50, 0,endA,false);
+      ctx.strokeStyle="#000";
+      ctx.stroke();
+
+      ctx.beginPath();
+      var start=(Math.PI/180)*-90;
+
+      var endB = (Math.PI/180)*(-90+s/zhouqi*360);
+
+      ctx.lineWidth = 8; //设置线宽
+      ctx.arc(150,150,50, start,endB,false);
+      ctx.strokeStyle="red";
+      ctx.stroke();
+}
+var newS=1;
+var zhouqi1=10;
+  draw(newS,zhouqi1);
+    var timer=setInterval(function(){
+      newS++;
+      if(zhouqi1<newS){
+        newS=0;
+        draw(newS,0);
+      }else{
+        draw(newS,zhouqi1);
+      }
+    },1000)
+  </script>
+</body>
+</html>
